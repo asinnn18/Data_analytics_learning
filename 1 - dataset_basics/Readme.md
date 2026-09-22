@@ -1,78 +1,154 @@
-Day 1 — Dataset Basics
+Day 1 — Understanding a Retail Sales Dataset
 
-Objective
+ Objective:
 
-Understand the basic structure of a dataset and learn how to inspect data using Python and Pandas.
+Today I learned how to inspect and understand a dataset before performing any analysis.
 
-What I Learned
+Instead of starting with charts or machine learning models, the first step is to understand what the data actually represents.
 
-1. Dataset
+ Real-World Scenario:
 
-A dataset is a collection of related data organized into rows and columns.
+Imagine I am working as a Junior Data Analyst for a retail company.
+
+The company has thousands of sales transactions and wants to understand its business performance.
+
+A transaction might look like:
+
+Transaction ID| Date| Product Category| Quantity| Unit Price| Payment Method
+10001| 2026-01-05| Electronics| 2| 25000| Card
+10002| 2026-01-05| Clothing| 3| 1200| UPI
+10003| 2026-01-06| Grocery| 5| 350| Cash
+
+Before answering business questions, I first need to understand the structure and quality of this data.
+
+---
+
+1. Understanding Rows and Columns
+
+Each row represents one transaction.
+
+Each column represents a feature or attribute of that transaction.
 
 For example:
 
-Customer| Age| City| Purchase
-A| 21| Chennai| 500
-B| 25| Salem| 750
-C| 23| Madurai| 300
+1 row = 1 sales transaction
 
-Each row represents a record, while each column represents a feature or attribute.
+Date        → When the transaction happened
+Category    → What type of product was purchased
+Quantity    → Number of items purchased
+Unit Price  → Price of one item
+Payment     → Payment method used
 
-2. Rows and Columns
+---
 
-- Rows represent individual records.
-- Columns represent variables/features.
-- The number of rows and columns describes the basic shape of a dataset.
+2. Loading the Dataset
 
-3. Data Types
-
-Common data types include:
-
-- Integer
-- Float
-- String
-- Boolean
-- Date/Time
-
-Understanding data types is important before performing analysis.
-
-4. Missing Values
-
-Missing values are records where information is unavailable.
-
-They need to be identified before analysis because they can affect the results.
-
-5. Duplicate Records
-
-Duplicate records are repeated rows in a dataset.
-
-Duplicates should be checked because they may affect analysis and produce incorrect results.
-
-Python Concepts Practiced
-
-I used Pandas to inspect a dataset.
+I used Pandas to load the CSV file.
 
 import pandas as pd
 
-df = pd.read_csv("data.csv")
+df = pd.read_csv("retail_sales.csv")
+
+---
+
+3. Inspecting the First Records
 
 print(df.head())
+
+"head()" helps me quickly understand what the dataset looks like.
+
+---
+
+4. Checking Dataset Size
+
 print(df.shape)
+
+The result is represented as:
+
+(rows, columns)
+
+For example:
+
+(10000, 8)
+
+means the dataset contains 10,000 records and 8 columns.
+
+---
+
+5. Understanding Data Types
+
 print(df.info())
+
+This helps identify whether columns contain:
+
+- integers
+- decimal numbers
+- text
+- dates
+- boolean values
+
+Correct data types are important because they determine how the data can be analysed.
+
+---
+
+6. Checking Missing Values
+
 print(df.isnull().sum())
+
+This tells me how many values are missing in each column.
+
+For example:
+
+Customer_ID       0
+Date              0
+Category          3
+Quantity          0
+Unit_Price        5
+Payment_Method    2
+
+Missing values need to be investigated before analysis.
+
+---
+
+7. Checking Duplicate Transactions
+
 print(df.duplicated().sum())
 
-Functions Learned
+Duplicate transactions can cause incorrect sales totals.
 
-Function| Purpose
-"head()"| Displays the first rows
-"shape"| Returns number of rows and columns
-"info()"| Shows column names and data types
-"isnull()"| Identifies missing values
-"sum()"| Calculates totals/counts
-"duplicated()"| Identifies duplicate rows
+For example, if the same ₹25,000 transaction appears twice, the company's calculated revenue could become artificially high.
 
-Key Learning
+---
 
-Before analysing a dataset, I should first understand its structure, data types, missing values, and duplicate records.
+💡 Key Learning
+
+I learned that data analysis does not begin with creating dashboards.
+
+The first step is:
+
+Raw Data
+   ↓
+Understand Structure
+   ↓
+Check Data Types
+   ↓
+Check Missing Values
+   ↓
+Check Duplicates
+   ↓
+Clean Data
+   ↓
+Analyse Data
+
+ Business Connection:
+
+A Data Analyst should understand what each column means and whether the data can be trusted before using it to answer business questions.
+
+ Tools Used:
+
+- Python
+- Pandas
+- VS Code / Jupyter
+- GitHub
+
+ 
